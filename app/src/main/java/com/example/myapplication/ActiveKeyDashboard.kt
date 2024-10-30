@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import android.Manifest
+import android.widget.TextView
 import androidx.work.WorkManager
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -83,20 +84,20 @@ class ActiveKeyDashboard : AppCompatActivity() {
             .create()
 
         // Find input fields in the popup
-        val editKeyName: EditText = popupView.findViewById(R.id.editKeyName)
+        val editKeyName: TextView = popupView.findViewById(R.id.editKeyName)
         val editTakenBy: EditText = popupView.findViewById(R.id.editTakenBy)
         val editPhoneNumber: EditText = popupView.findViewById(R.id.editPhoneNumber)
-        val editTakenTime: EditText = popupView.findViewById(R.id.editTakenTime)
+        val editTakenTime: TextView = popupView.findViewById(R.id.editTakenTime)
         val saveButton: Button = popupView.findViewById(R.id.saveButton)
         val handoverButton: Button = popupView.findViewById(R.id.handoverButton)
 
         // Fetch key details from the database
         val user = dbHelper.getUser(keyName)
         user?.let {
-            editKeyName.setText(it.key_name)
+            editKeyName.text = it.key_name
             editTakenBy.setText(it.taken_by)
             editPhoneNumber.setText(it.p_number)
-            editTakenTime.setText(it.taken_time)
+            editTakenTime.text = it.taken_time
         }
 
         // Handle save button click
