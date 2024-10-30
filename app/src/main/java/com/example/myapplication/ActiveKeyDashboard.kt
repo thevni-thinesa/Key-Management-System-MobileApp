@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import android.Manifest
+import android.content.Intent
+import android.net.Uri
 import android.widget.TextView
 import androidx.work.WorkManager
 import java.text.SimpleDateFormat
@@ -77,6 +79,8 @@ class ActiveKeyDashboard : AppCompatActivity() {
         // Inflate the custom layout for the popup
         val inflater = LayoutInflater.from(this)
         val popupView = inflater.inflate(R.layout.activity_alert_dialog, null)
+        // Find Quick Dial button in the popup layout
+        val quickDialButton: Button = popupView.findViewById(R.id.btn_quickDial)
 
         // Create the AlertDialog
         val dialogBuilder = AlertDialog.Builder(this)
@@ -139,6 +143,23 @@ class ActiveKeyDashboard : AppCompatActivity() {
             refreshKeyList()
             dialogBuilder.dismiss()
         }
+
+        // Set Quick Dial button click listener
+        quickDialButton.setOnClickListener {
+            val phoneNumber = editPhoneNumber.text.toString()
+
+            if (phoneNumber.isNotEmpty()) {
+                // Intent to open the dialer with the phone number
+                val dialIntent = Intent(Intent.ACTION_DIAL).apply {
+                    data = Uri.parse("tel:$phoneNumber")
+                }
+                startActivity(dialIntent)
+            } else {
+                Toast.makeText(this, "Please enter a valid phone number", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
         dialogBuilder.show()
     }
 

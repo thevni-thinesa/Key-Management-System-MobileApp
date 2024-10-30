@@ -12,16 +12,17 @@
     android:background="@drawable/backimage"
     tools:context=".Dashboard">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="KEY MANAGEMENT"
-                android:id="@+id/dashboardText"
-                android:textSize="36sp"
-                android:textAlignment="center"
-                android:paddingTop="70dp"
-                android:textStyle="bold"
-                android:textColor="@color/main_color"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="KEY MANAGEMENT"
+        android:id="@+id/dashboardText"
+        android:textSize="36sp"
+        android:textAlignment="center"
+        android:paddingTop="70dp"
+        android:textStyle="bold"
+        android:textColor="@color/main_color"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
