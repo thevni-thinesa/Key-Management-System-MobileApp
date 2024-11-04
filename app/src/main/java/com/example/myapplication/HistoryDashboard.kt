@@ -47,14 +47,32 @@ class HistoryDashboard : AppCompatActivity() {
         // Clear History Button
         val btnClearHistory: Button = findViewById(R.id.btn_clearHistory)
         btnClearHistory.setOnClickListener {
-            if (dbHelper.clearHandoverTable()) {
-                // Success message
-                Toast.makeText(this, "History cleared successfully", Toast.LENGTH_SHORT).show()
-                historyLayout.removeAllViews() // Optional: Clear the layout
-            } else {
-                // Failure message
-                Toast.makeText(this, "Failed to clear history", Toast.LENGTH_SHORT).show()
+
+            // Create an AlertDialog
+            val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+            builder.setTitle("Clear History")
+            builder.setMessage("Are you sure you want to clear all history?")
+
+            // Set up the Yes button
+            builder.setPositiveButton("Yes") { dialog, _ ->
+
+                if (dbHelper.clearHandoverTable()) {
+                    // Success message
+                    Toast.makeText(this, "History cleared successfully", Toast.LENGTH_SHORT).show()
+                    historyLayout.removeAllViews() // Optional: Clear the layout
+                } else {
+                    // Failure message
+                    Toast.makeText(this, "Failed to clear history", Toast.LENGTH_SHORT).show()
+                }
+                dialog.dismiss()
             }
+            // Set up the No button
+            builder.setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss() // Close the dialog if "No" is selected
+            }
+
+            // Show the AlertDialog
+            builder.create().show()
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(historyLayout) { v, insets ->

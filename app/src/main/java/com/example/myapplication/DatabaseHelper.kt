@@ -47,7 +47,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     override fun onCreate(db: SQLiteDatabase) {
         // Create Admin table
-        val createAdminTable = ("CREATE TABLE $TABLE_ADMIN ($ADMIN_USERNAME TEXT PRIMARY KEY, $ADMIN_PASSWORD TEXT)")
+        val createAdminTable =
+            ("CREATE TABLE $TABLE_ADMIN ($ADMIN_USERNAME TEXT PRIMARY KEY, $ADMIN_PASSWORD TEXT)")
         db.execSQL(createAdminTable)
 
         // Create User table
