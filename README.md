@@ -1,6 +1,6 @@
 ## Key Management System
 
-## Using ( Kotlin + SQLite )
+Using ( Kotlin + SQLite )
 
 ## Screenshots
 
